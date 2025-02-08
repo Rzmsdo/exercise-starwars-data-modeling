@@ -27,45 +27,30 @@ class StartSession(Base):
     user_password =Column(String, ForeignKey('usuarios.user_password'))
     last_session = Column(String)
 
-class Personaje(Base):
-    __tablename__ = 'personaje'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    last_name = Column(String)
-    color_eyes = Column(String)
-    color_skin = Column(String)
-    age = Column(Integer)
-    mass = Column(Integer)
 
 class Personajes(Base):
     __tablename__ = 'personajes'
     id = Column(Integer, primary_key=True)
-    pers_id = Column(Integer, ForeignKey('personaje.id'))
-    pers_name = Column(String, ForeignKey('personaje.name'))
-    pers_last_name= Column(String, ForeignKey('personaje.last_name'))
+    pers_id = Column(Integer)
+    pers_name = Column(String)
+    pers_last_name= Column(String)
 
-class Planeta(Base):
-    __tablename__ = 'planeta'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    descrption = Column(String)
-    radio = Column(Integer)
-    terrain = Column(String)
+
 
 class Planetas(Base):
     __tablename__ = 'planetas'
     id = Column(Integer, primary_key=True)
-    planeta_id =Column(Integer, ForeignKey('planeta.id'))
-    planeta_name = Column(String, ForeignKey('planeta.name'))
-    planeta_radio = Column(Integer, ForeignKey('planeta.radio'))
+    planeta_id =Column(Integer)
+    planeta_name = Column(String)
+    planeta_radio = Column(Integer)
 
 
 class Favoritos(Base):
     __tablename__='favoritos'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer,ForeignKey('usuarios.user_id'))
-    favorito_planeta = Column(Integer, ForeignKey('planeta.id'))
-    favorito_personaje= Column(Integer, ForeignKey('personaje.id'))
+    favorito_planeta = Column(Integer, ForeignKey('planetas.id'))
+    favorito_personaje= Column(Integer, ForeignKey('personajes.id'))
 
 
 
